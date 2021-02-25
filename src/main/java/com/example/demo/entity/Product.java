@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import javax.persistence.Table;
+
 /**
  * @author ：Yanhuanjin
  * @version :
@@ -7,6 +9,8 @@ package com.example.demo.entity;
  * @description ：商品实体类
  * @modified By：
  */
+
+@Table(name = "product")
 public class Product {
     int productId;
     String productName;

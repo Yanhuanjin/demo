@@ -3,9 +3,12 @@ package com.example.demo.controller;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.Response;
 import com.example.demo.service.ProductService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -118,6 +121,32 @@ public class ProductController {
         }else{
             response.setResponse("未查询到数据", 1, true, null);
         }
+        return response;
+    }
+
+    @RequestMapping(value = "/statisticProductNum", method = RequestMethod.POST)
+    public Response statisticProductNum() {
+        Response response = new Response();
+        List<Map<String, Object>> resList = productService.statisticProductNum();
+        response.setResponse("查询成功", 1, true, resList);
+        return response;
+    }
+
+    @RequestMapping(value = "/getProductPageList", method = RequestMethod.GET)
+    public Response getProductPageList(@RequestParam("pageNum") Integer pageNum,
+                                       @RequestParam("pageSize") Integer pageSize){
+        // 借助pagehelper插件开启分页
+        // 下面这行代码的位置不能随便放，
+        // pagehelper会对此代码之后的第一个查询进行分页，
+        // 如果涉及多个查询语句的业务代码，注意此行代码的摆放位置
+        PageHelper.startPage(pageNum, pageSize);
+        List<Product> list = productService.getProductPageList();
+        // 组装分页数据，主要包含分页列表数据及总记录数
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", list);
+        map.put("total", new PageInfo<>(list).getTotal());
+        Response response = new Response();
+        response.setResponse("查询成功", 1, true, map);
         return response;
     }
 }

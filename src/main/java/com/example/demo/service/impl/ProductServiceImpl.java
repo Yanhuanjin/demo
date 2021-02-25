@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：Yanhuanjin
@@ -73,5 +74,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(int productId) {
         return productMapper.getProductById(productId);
+    }
+
+    @Override
+    public List<Map<String, Object>> statisticProductNum() {
+        return productMapper.statisticProductNum();
+    }
+
+    @Override
+    public List<Product> getProductPageList(){
+        return productMapper.getProductPageList();
     }
 }

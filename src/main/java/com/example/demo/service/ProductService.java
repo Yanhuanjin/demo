@@ -13,4 +13,6 @@ public interface ProductService {
     int updateProduct(Product product);
     int deleteProduct(int productId);
     Product getProductById(int productId);
+    List<Map<String, Object>> statisticProductNum();
+    List<Product> getProductPageList();
 }

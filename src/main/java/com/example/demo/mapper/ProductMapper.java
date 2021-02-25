@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：Yanhuanjin
@@ -24,4 +25,6 @@ public interface ProductMapper {
     int updateProduct(@Param("pro") Product product);
     int deleteProduct(@Param("productId") int productId);
     Product getProductById(int productId);
+    List<Map<String, Object>> statisticProductNum();
+    List<Product> getProductPageList();
 }

@@ -64,4 +64,12 @@
     <select id="getProductById" parameterType="int" resultMap="BaseResultMap">
         select * from `product` where product_id = #{productId}
     </select>
+
+    <select id="statisticProductNum" resultType="java.util.Map">
+        select product_type productType, count(1) productNum from product group by product_type
+    </select>
+
+    <select id="getProductPageList" resultMap="BaseResultMap">
+        select * from `product`
+    </select>
 </mapper>
