@@ -74,7 +74,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
-    public Response updateProcut(@RequestBody Product product){
+    public Response updateProduct(@RequestBody Product product){
         int productId = product.getProductId();
         int count = productService.updateProduct(product);
         Response response;
@@ -89,5 +89,23 @@ public class ProductController {
 
         }
         return response;
+    }
+
+    @RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
+    public Response deleteProduct(@RequestBody Product product) {
+        int productId = product.getProductId();
+        if (productId != 0) {
+            int count = productService.deleteProduct(productId);
+            Response response;
+            if (count > 0) {
+                response = new Response("删除成功", 1, true);
+            } else {
+                response = new Response("删除失败", -1, false);
+            }
+            return response;
+        }else{
+            Response response = new Response("删除失败", -1, false);
+            return response;
+        }
     }
 }

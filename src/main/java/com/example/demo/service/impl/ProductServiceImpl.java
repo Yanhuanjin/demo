@@ -58,4 +58,15 @@ public class ProductServiceImpl implements ProductService {
         }
         return count;
     }
+
+    @Override
+    public int deleteProduct(int productId){
+        int count = 0;
+        try{
+            count = productMapper.deleteProduct(productId);
+        }catch (Exception err){
+            System.out.println(err);
+        }
+        return count;
+    }
 }

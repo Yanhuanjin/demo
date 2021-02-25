@@ -56,4 +56,8 @@
         </trim>
         where product_id = #{pro.productId}
     </update>
+
+    <delete id="deleteProduct" parameterType="int">
+        delete from `product` where product_id = #{productId}
+    </delete>
 </mapper>
