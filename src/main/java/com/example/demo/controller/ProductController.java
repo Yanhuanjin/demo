@@ -108,4 +108,16 @@ public class ProductController {
             return response;
         }
     }
+
+    @RequestMapping(value = "/getProductById", method = RequestMethod.POST)
+    public Response getProductById(@RequestParam("productId") Integer productId){
+        Response response = new Response();
+        Product product = productService.getProductById(productId);
+        if(null != product){
+            response.setResponse("查询成功", 1, true, product);
+        }else{
+            response.setResponse("未查询到数据", 1, true, null);
+        }
+        return response;
+    }
 }

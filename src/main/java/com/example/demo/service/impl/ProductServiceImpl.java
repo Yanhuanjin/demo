@@ -69,4 +69,9 @@ public class ProductServiceImpl implements ProductService {
         }
         return count;
     }
+
+    @Override
+    public Product getProductById(int productId) {
+        return productMapper.getProductById(productId);
+    }
 }

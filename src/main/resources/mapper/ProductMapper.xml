@@ -60,4 +60,8 @@
     <delete id="deleteProduct" parameterType="int">
         delete from `product` where product_id = #{productId}
     </delete>
+
+    <select id="getProductById" parameterType="int" resultMap="BaseResultMap">
+        select * from `product` where product_id = #{productId}
+    </select>
 </mapper>

@@ -23,4 +23,5 @@ public interface ProductMapper {
     List<Product> getProductListByCondition(@Param("productName") String productName, @Param("productType") int productType);
     int updateProduct(@Param("pro") Product product);
     int deleteProduct(@Param("productId") int productId);
+    Product getProductById(int productId);
 }
